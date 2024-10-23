@@ -1048,7 +1048,7 @@ hooks = [
     'name': 'win_toolchain',
     'condition': 'download_windows_deps',
     'pattern': '.',
-    'action': ['python3', 'src/build/vs_toolchain.py', 'update'],
+    'action': ['python3', 'build/vs_toolchain.py', 'update'],
   },
   {
     'name': 'dia_dll',
@@ -1065,7 +1065,7 @@ hooks = [
     'condition': 'download_linux_deps',
     'action': [
       'python3',
-      'src/build/linux/sysroot_scripts/install-sysroot.py',
+      'build/linux/sysroot_scripts/install-sysroot.py',
       '--arch=x64'],
   },
   {
@@ -1074,7 +1074,7 @@ hooks = [
     'condition': 'download_linux_deps',
     'action': [
       'python3',
-      'src/build/linux/sysroot_scripts/install-sysroot.py',
+      'build/linux/sysroot_scripts/install-sysroot.py',
       '--arch=arm64'],
   },
   {
@@ -1142,32 +1142,6 @@ hooks = [
       'flutter/tools/fuchsia/with_envs.py',
       'flutter/tools/fuchsia/test_scripts/update_product_bundles.py',
       'terminal.x64,terminal.qemu-arm64',
-    ]
-  },
-  # The following two scripts check if they are running in the LUCI
-  # environment, and do nothing if so. This is because Xcode is not yet
-  # installed in CI when these hooks are run.
-  {
-    'name': 'Find the iOS device SDKs',
-    'pattern': '.',
-    'condition': 'host_os == "mac"',
-    'action': [
-      'python3',
-      'src/build/config/ios/ios_sdk.py',
-      # This cleans up entries under flutter/prebuilts for this script and the
-      # following script.
-      '--as-gclient-hook'
-    ]
-  },
-  {
-    'name': 'Find the macOS SDK',
-    'pattern': '.',
-    'condition': 'host_os == "mac"',
-    'action': [
-      'python3',
-      'src/build/mac/find_sdk.py',
-      '--as-gclient-hook',
-      Var('mac_sdk_min')
     ]
   },
   {
