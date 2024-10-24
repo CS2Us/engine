@@ -311,6 +311,12 @@ deps = {
 
   'src/flutter/third_party/stb':
    Var('flutter_git') + '/third_party/stb.git' + '@' + '5736b15f7ea0ffb08dd38af21067c314d6a3aae9',
+
+  'src/flutter/third_party/dart/third_party/devtools':
+   {'dep_type': 'cipd', 'packages': [{'package': 'dart/third_party/flutter/devtools', 'version': 'git_revision:70375f6c6d81faa8f3069aa6dcf2a98c69445455'}]},
+
+  'src/flutter/third_party/dart/tools/sdks/dart-sdk':
+   {'dep_type': 'cipd', 'packages': [{'package': 'dart/dart-sdk/${{platform}}', 'version': 'version:3.5.0-278.0.dev'}]},
 }
 
 hooks = [
